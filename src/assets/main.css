@@ -1,0 +1,223 @@
+@import "./base.css";
+
+body {
+  overflow-x: hidden;
+}
+.graph-container {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.card {
+  padding: 5px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  background-color: #c5c5c5;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.row {
+  padding: 0 !important;
+}
+
+.card-body {
+  padding: 5px !important;
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 10px;
+  color: var(--bs-card-color);
+}
+.iplist {
+  width: 100%;
+  height: 350px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.iplist > span {
+  font-size: 12px;
+
+  background-color: rgb(255, 223, 155);
+  margin: 1px;
+  padding: 5px;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+}
+.graph {
+  width: 100%;
+  height: 400px;
+}
+.node-list {
+  width: 100%;
+  height: 400px;
+  overflow-y: scroll;
+}
+.node-lable {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.233);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.178);
+  padding: 3px;
+  border-radius: 5px;
+  margin: 3px;
+}
+.node-lable:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+.node-details > div > span,
+.node-lable > span {
+  margin: 3px 3px;
+  padding: 0 3px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #00000069;
+}
+.node-type {
+  color: #000;
+  background-color: rgb(179, 255, 0, 0.658);
+}
+.node-type-dhcp {
+  color: #fff;
+  background-color: rgb(255, 0, 0, 0.658);
+}
+.node-type-controller {
+  color: #fff;
+  background-color: #5b008f;
+}
+
+.node-type-controller-slave {
+  color: #fff;
+  background-color: #a816fd;
+}
+.node-type-switch {
+  color: #000;
+  background-color: rgba(0, 68, 255, 0.658);
+}
+.node-type-host {
+  color: #000;
+  background-color: rgb(0, 255, 0, 0.658);
+}
+
+.node-id {
+  color: #000;
+  background-color: rgb(0, 255, 115, 0.658);
+}
+
+.node-ip {
+  color: #000;
+  background-color: rgb(255, 145, 0, 0.658);
+}
+
+.node-eth {
+  color: #fff;
+  background-color: rgb(255, 60, 0, 0.658);
+}
+.node-eth::before {
+  content: "eth";
+}
+.node-status {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.658);
+}
+.node-ip::before {
+  content: "IP : ";
+}
+.node-name {
+  color: #000;
+  background-color: rgb(0, 225, 255, 0.658);
+}
+
+.node-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.spacer {
+  flex: 1;
+}
+
+.online {
+  color: rgb(0, 255, 0);
+  /*animation: color_change_online 0.4s infinite alternate;*/
+}
+
+@keyframes color_change_online {
+  from {
+    color: #fff;
+  }
+  to {
+    color: rgb(0, 255, 0);
+  }
+}
+.offline {
+  color: rgb(255, 0, 0);
+  animation: color_change_offline 0.4s infinite alternate;
+}
+
+@keyframes color_change_offline {
+  from {
+    color: #fff;
+  }
+  to {
+    color: rgb(255, 0, 0);
+  }
+}
+.log-list2 {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.log-list {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: hidden;
+}
+
+.log-list > div > span {
+  padding: 0 5px;
+}
+
+.info {
+  color: #000;
+  background-color: rgba(208, 255, 0, 0.219);
+}
+.danger {
+  color: rgb(255, 0, 0, 1);
+  background-color: #fff;
+}
+.success {
+  color: #000;
+  background-color: rgb(0, 255, 0, 0.219);
+}
+
+span {
+  font-size: 0.8rem;
+}
+.card-title {
+  font-size: 1.2rem;
+}
+.btn-sm {
+  font-size: 0.8rem;
+}
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
