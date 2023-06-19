@@ -314,7 +314,7 @@
           </div>
           <div class="card col-sm-6 col-lg-4">
             <div class="card-body">
-              <h4 class="card-title">Firewall log</h4>
+              <h4 class="card-title">Log</h4>
               <div class="card-text">
                 <!-- scroll automatically random firewall log -->
                 <div class="log-list" ref="log">
@@ -452,12 +452,12 @@ let data = reactive({
   nodes: {
     dhcp0: {
       id: "dhcp0",
-      name: "DHCP Server 1\n10.0.0.1",
+      name: "DHCP Server 1",
       color: new Component().getColor2(ComponentType.DHCP),
       isSelected: false,
       type: "Type C\nMultiline",
       nodetype: ComponentType.DHCP,
-      ip: "10.0.0.1",
+      ip: "",
       status: "Online",
       icon: "&#f86a",
       eth: 0,
@@ -465,12 +465,12 @@ let data = reactive({
     //controller0
     c00: {
       id: "c00",
-      name: "(Master) Controller 1\n10.0.0.2",
+      name: "(Master) Controller 1",
       color: new Component().getColor2(ComponentType.Controller),
       isSelected: false,
       type: "Type C\nMultiline",
       nodetype: ComponentType.Controller,
-      ip: "10.0.0.2",
+      ip: "",
       status: "Offline",
       icon: "&#f86a",
       eth: 0,
@@ -783,28 +783,36 @@ function addNewSwitch() {
   //check ip is already used
   let ip = newSwitch.ip;
   let ipUsed = false;
-  for (let key in data.nodes) {
-    if (data.nodes[key].ip == ip) {
-      ipUsed = true;
-      break;
+  if (ip != "")
+    for (let key in data.nodes) {
+      if (data.nodes[key].ip == ip) {
+        ipUsed = true;
+        break;
+      }
     }
-  }
   let isupdate = ipUsed;
   console.log("isupdate", isupdate);
   console.log("newSwitch", newSwitch.ip);
   //get last ip
   let lastIP = getips()[getips().length - 1].ip;
+  //check last is is empty
+  if (lastIP == "") {
+    lastIP = "10.0.0.1";
+  }
 
   if (!isupdate) if (lastIP) newSwitch.ip = incrementIP(lastIP);
+  console.log("lastIP", lastIP, newSwitch.ip);
 
   data.nodes[newSwitch._id] = {
     id: newSwitch._id,
-    name: newSwitch.name + "\n" + newSwitch.ip,
+    name: ComponentType.Host
+      ? newSwitch.name + "\n" + newSwitch.ip
+      : newSwitch.name,
     color: newSwitch.isMaster ? "#a816fd" : newSwitch.getColor(),
     isSelected: false,
     nodetype: newSwitch.type,
     type: "Type C\nMultiline",
-    ip: newSwitch.ip,
+    ip: ComponentType.Host ? newSwitch.ip : "",
     status: "Online",
     eth: newSwitch.eth,
   };
